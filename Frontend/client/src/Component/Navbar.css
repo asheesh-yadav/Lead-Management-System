@@ -1,0 +1,13 @@
+.addleads{
+    text-decoration: none;
+}
+.addleads:hover{
+    cursor: pointer;
+    color: beige;
+}
+
+.homeMenue {
+    cursor: pointer;
+}
+
+
