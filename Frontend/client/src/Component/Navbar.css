@@ -11,3 +11,92 @@
 }
 
 
+.navbar-container {
+  width: 100%;
+  background: #101720;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 20px;
+  position: relative;
+}
+
+.navbar-brand {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Menu */
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  color: white;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu li {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.navbar-menu li:hover {
+  color: #0d6efd;
+}
+
+/* Search */
+.search-box {
+  width: 300px;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Mobile Search Hidden on Desktop */
+.mobile-search {
+  display: none;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .search-box {
+    display: none;
+  }
+
+  .navbar-menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: #101720;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0;
+    display: none;
+  }
+
+  .navbar-menu.open {
+    display: flex;
+  }
+
+  .mobile-search {
+    display: block;
+    width: 90%;
+  }
+}
