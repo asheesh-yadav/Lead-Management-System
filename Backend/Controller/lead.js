@@ -99,6 +99,25 @@ export const getLeads = async (req, res) => {
 };
 
 
+// -------------- Delete lead
+export const deleteLead = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const lead = await Lead.findByIdAndDelete(id);
+
+    if (!lead) {
+      return res.status(404).json({ message: "Lead not found" });
+    }
+
+    res.status(200).json({
+      message: "Lead deleted successfully",
+      leadId: id,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to delete lead" });
+  }
+};
 
 
 // ========  Meta leads

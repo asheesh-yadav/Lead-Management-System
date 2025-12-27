@@ -1,6 +1,7 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { Box, MenuItem, Select, Button } from "@mui/material";
 import { useState } from "react";
+import api from "../api";
 
 const LeadTable = ({ leads }) => {
   const [source, setSource] = useState("all");
@@ -14,7 +15,22 @@ const LeadTable = ({ leads }) => {
     { field: "email", headerName: "Email", flex: 1 },
     { field: "source", headerName: "Source", flex: 1 },
     { field: "campaignName", headerName: "Campaign", flex: 1},
-    { field: "createdAt", headerName: "Date", flex: 1 }
+    { field: "createdAt", headerName: "Date", flex: 1 },  {
+    field: "actions",
+    headerName: "Actions",
+    flex: 1,
+    sortable: false,
+    renderCell: (params) => (
+      <Button
+        color="error"
+        variant="outlined"
+        size="small"
+        onClick={() => handleDelete(params.row.id)}
+      >
+        Delete
+      </Button>
+    ),
+  },
   ];
 
   const exportCSV = () => {
@@ -30,6 +46,18 @@ const LeadTable = ({ leads }) => {
     a.download = "leads.csv";
     a.click();
   };
+
+  const handleDelete = async (id) => {
+  if (!window.confirm("Are you sure you want to delete this lead?")) return;
+
+  try {
+    await api.delete(`/api/leads/deleteLeads/${id}`);
+    window.location.reload(); 
+  } catch (error) {
+    alert("Failed to delete lead");
+  }
+};
+
 
   return (
     <Box>
